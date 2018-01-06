@@ -2,9 +2,10 @@ package com.springmvc.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springmvc.entity.Entidade;
 import com.springmvc.service.Servico;
+import com.springmvc.utils.Utils;
 
 @Controller
 @RequestMapping("/")
 public class Controlador {
+	Logger logger = LoggerFactory.getLogger(Controlador.class);
 	
 	@Autowired
 	Servico s;
@@ -53,12 +56,12 @@ public class Controlador {
         }
     
 		if(s.salvar(entidade)) {
-			System.out.println("Incluido com sucesso!");
+			logger.info("Incluido com sucesso!");
 		}else {
-			System.out.println("Erro ao tentar incluir!");
+			logger.info("Erro ao tentar incluir!");
 		}
 		
-		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
+		attributes.addFlashAttribute("mensagem", Utils.getMessage("salvar.sucesso"));
 		return new ModelAndView("redirect:/");
 	}
 	
@@ -66,12 +69,12 @@ public class Controlador {
 	public ModelAndView delEntidade(@PathVariable("id") Integer id, RedirectAttributes attributes) {
 		Entidade e = s.findEntidade(id);
 		if(s.excluir(e)) {
-			System.out.println("Excluido com sucesso!");
+			logger.info("{excluir.sucesso}");
 		}else {
-			System.out.println("Erro ao tentar atualizar!");
+			logger.info("Erro ao tentar atualizar!");
 		}
 		
-		attributes.addFlashAttribute("mensagem", "Excluído com sucesso!");
+		attributes.addFlashAttribute("mensagem", Utils.getMessage("excluir.sucesso"));
 		return new ModelAndView("redirect:/");
 	}
 

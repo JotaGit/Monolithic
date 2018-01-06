@@ -17,5 +17,18 @@
 		<property name="prefix" value="/resource/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!-- 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    	<!- se não informar o caminho completo, spring compreende que o arquivo estará em main/resources/message.properties ->
+		<property name="basename" value="resource/message"/>
+    </bean>
+     -->
+     
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/message"/>
+    </bean>
 </beans>
+ 
+
  

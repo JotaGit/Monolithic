@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.springmvc.entity.Entidade;
 
 @Repository
 public class Repositorio {
+	Logger logger = LoggerFactory.getLogger(Repositorio.class);
 
 	int increment = 0;
 	Map<Integer, Entidade> bd = new HashMap<Integer, Entidade>();
@@ -24,6 +27,7 @@ public class Repositorio {
 			bd.replace(e.getId(), e);
 		}
 
+		logger.info(e.toString());
 		return true;
 	}
 
