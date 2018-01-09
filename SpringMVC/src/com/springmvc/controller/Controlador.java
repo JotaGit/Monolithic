@@ -69,7 +69,7 @@ public class Controlador {
 	public ModelAndView delEntidade(@PathVariable("id") Integer id, RedirectAttributes attributes) {
 		Entidade e = s.findEntidade(id);
 		if(s.excluir(e)) {
-			logger.info("{excluir.sucesso}");
+			logger.info("{excluir.sucesso}");	
 		}else {
 			logger.info("Erro ao tentar atualizar!");
 		}

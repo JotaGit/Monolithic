@@ -9,7 +9,8 @@
 
 
 	<!-- MVC -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator" />
+	<mvc:resources mapping="/resource/**" location="/resource/" />
 	<context:component-scan base-package="com.springmvc" />
 
 	<bean
@@ -28,6 +29,18 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/message"/>
     </bean>
+    
+    
+    <!-- Hibernate Validation -->
+    <!-- O caminho padrão para o arquivo é src/main/resources se não for informado, mas aqui indico onde e qual será. -->
+	<bean id="validationMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/MensagensDeValidacao"/>
+    </bean>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="validationMessageSource"/>
+	</bean>
+	
+	
 </beans>
  
 

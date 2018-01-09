@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.springmvc.validator.Password;
+import com.springmvc.validator.TextArea;
+
 @Entity
 public class Entidade implements Serializable{
 	
@@ -27,10 +32,12 @@ public class Entidade implements Serializable{
 	
 	private String selectTag;
 	
+	@Password
 	private String passwordTag;
 	
 	private String radiobuttonsTag;
 	
+	@TextArea
 	private String textareaTag;
 	
 	// ----- Getters and Setters
